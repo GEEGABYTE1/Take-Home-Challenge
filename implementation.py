@@ -1,10 +1,14 @@
 from tree import TreeNode
 
 # Test inputs
-lst = ['apple', 'ape', 'array', 'argon', 'advanced', 'Barry', 'Bee', 'Bat', 'Ball']
+lst = []
 
 
 class Trie:
+
+    def __init__(self):
+        self.add_keyword()
+        
 
     def implementation(self, lst):
         self.tree = TreeNode(len(lst))
@@ -81,23 +85,14 @@ class Trie:
             return True 
         else:
             return False
+
+    def add_keyword(self):
+        user_word = str(input("Please enter a word to add to the trie: "))
+        lst.append(user_word)
+        self.implementation(lst)
         
         
             
-
-
-
-        
-
-
-    
-                
-            
-
-
-
-
-
 
 test = Trie()
 
