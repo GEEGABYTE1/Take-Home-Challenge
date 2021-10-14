@@ -1,4 +1,5 @@
 from tree import TreeNode
+import time
 
 # Test inputs
 lst = []
@@ -6,8 +7,8 @@ lst = []
 
 class Trie:
 
-    def __init__(self):
-        self.add_keyword()
+    #def running(self):
+        #self.add_keyword()
         
 
     def implementation(self, lst):
@@ -90,13 +91,53 @@ class Trie:
         user_word = str(input("Please enter a word to add to the trie: "))
         lst.append(user_word)
         self.implementation(lst)
+
+
+class Prompt:
+    trie = Trie()
+    def __init__(self):
+        print("Welcome to the trie! ")
+        time.sleep(0.2)
+        print("Here are the commands: \n")
+        time.sleep(0.3)
+        print(":/add_keyword - to add a keyword \n")
+        time.sleep(0.3)
+        print(":/search_keyword - to search for keyword \n")
+        time.sleep(0.3)
+        print(":/delete_keyword - to delete a keyword from the trie \n")
+        time.sleep(0.3) 
+        self.prompt()
+
+    def prompt(self):
+        while True:
+            print("\n")
+            user_prompt = str(input(':'))
+            
+            if user_prompt == '/add_keyword':
+                self.trie.add_keyword()
+
+            elif user_prompt == '/search_keyword':
+                result = self.trie.traverse()
+                print(result)
+
+            elif user_prompt == '/delete_keyword':
+                pass
+
+            elif user_prompt == '/quit':
+                break
+            else:
+                print("That command does not seem to be valid")
+
+
         
         
             
 
-test = Trie()
 
-test.implementation(lst)
-print(test.traverse())
+
+#test.implementation(lst)
+test = Prompt()
+print(test.prompt())
+
 
 
