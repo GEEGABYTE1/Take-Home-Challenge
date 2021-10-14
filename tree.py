@@ -14,6 +14,5 @@ class TreeNode:
         while len(nodes) > 0:
             current_node = nodes.pop()
             print(current_node)
-
             nodes += current_node.children 
     
