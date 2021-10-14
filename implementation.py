@@ -92,6 +92,25 @@ class Trie:
         lst.append(user_word)
         self.implementation(lst)
 
+    def delete(self):
+        user_prompt = str(input("Please enter a word that you are trying to find in a trie: "))
+        try:
+            tree = self.tree  
+            user_prompt = user_prompt.lower()
+            user_letters = [i for i in user_prompt]
+
+            nodes = [self.tree]
+            while len(nodes) > 0 and len(user_letters) > 0:
+                current_node = nodes.pop()
+                if current_node.value == user_letters[0]:
+                    current_node.value = None
+                    user_letters.pop(0)
+                nodes += current_node.children 
+
+            if len(user_letters) == 0:
+                return True
+        except:
+            return 
 
 class Prompt:
     trie = Trie()
@@ -121,7 +140,13 @@ class Prompt:
                 print(result)
 
             elif user_prompt == '/delete_keyword':
-                pass
+                deletion = self.trie.delete()
+                time.sleep(0.2)
+                if deletion == True:
+                     print("Keyword deleted succesfully! ")
+                else:
+                    print("Keyword was not found in the trie ")
+
 
             elif user_prompt == '/quit':
                 break
