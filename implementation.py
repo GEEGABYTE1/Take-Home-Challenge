@@ -1,5 +1,6 @@
 from tree import TreeNode
 import time
+from dfs import dfs
 
 # Test inputs
 lst = []
@@ -124,6 +125,8 @@ class Prompt:
         print(":/search_keyword - to search for keyword \n")
         time.sleep(0.3)
         print(":/delete_keyword - to delete a keyword from the trie \n")
+        time.sleep(0.3)
+        print(":/search_bar_sim - Experience the search algoritm on networks \n")
         time.sleep(0.3) 
         self.prompt()
 
@@ -146,6 +149,17 @@ class Prompt:
                      print("Keyword deleted succesfully! ")
                 else:
                     print("Keyword was not found in the trie ")
+            
+            elif user_prompt == '/search_bar_sim':
+                user_letter_prompt = str(input('Search Prompt :/ '))
+                user_letter_prompt = user_letter_prompt.lower()
+                results = self.trie.tree.traversing_tree(user_letter_prompt)
+
+                
+                for tree_object in results:
+                    for object in tree_object:
+                        print(object)
+                                
 
 
             elif user_prompt == '/quit':
