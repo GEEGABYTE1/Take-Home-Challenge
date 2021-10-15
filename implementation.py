@@ -115,6 +115,7 @@ class Trie:
 
 class Prompt:
     trie = Trie()
+    num_words = 0
     def __init__(self):
         print("Welcome to the trie! ")
         time.sleep(0.2)
@@ -137,6 +138,7 @@ class Prompt:
             
             if user_prompt == '/add_keyword':
                 self.trie.add_keyword()
+                self.num_words += 1
 
             elif user_prompt == '/search_keyword':
                 result = self.trie.traverse()
@@ -153,7 +155,7 @@ class Prompt:
             elif user_prompt == '/search_bar_sim':
                 user_letter_prompt = str(input('Search Prompt :/ '))
                 user_letter_prompt = user_letter_prompt.lower()
-                results = self.trie.tree.traversing_tree(user_letter_prompt)
+                results = self.trie.tree.traversing_tree(user_letter_prompt, self.num_words)
 
                 
                 for tree_object in results:
