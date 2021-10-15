@@ -153,14 +153,41 @@ class Prompt:
                     print("Keyword was not found in the trie ")
             
             elif user_prompt == '/search_bar_sim':
-                user_letter_prompt = str(input('Search Prompt :/ '))
-                user_letter_prompt = user_letter_prompt.lower()
-                results = self.trie.tree.traversing_tree(user_letter_prompt, self.num_words)
-
+                while True:
+                    user_letter_prompt = str(input('Search Prompt :/ '))
+                    user_letter_prompt = user_letter_prompt.lower()
+                    results = self.trie.tree.traversing_tree(user_letter_prompt, self.num_words)
                 
-                for tree_object in results:
-                    for object in tree_object:
-                        print(object)
+                    if user_letter_prompt == '/quit':
+                        break
+
+                    else:
+                        lst = []
+                        for tree_object in results:
+                            string = ""
+                            
+                            for object in tree_object:
+                                if type(object) == str:
+                                    lst.append(object)
+                                else:
+                                    if type(object.value) == int:
+                                        continue
+                                    else:
+                                        string += object.value
+                                        if string[0] !=  user_letter_prompt[0]:
+                                            string = user_letter_prompt[0] + string
+
+                            lst.append(string)
+
+
+                        for string in lst:
+                            if string == 'Partition':
+                                pass
+                            else:
+                                if user_letter_prompt in string:                # Integrate Naive Pattern Search, where the pattern
+                                    print(string)                               # is the user input and text is the actual word
+                        
+                    
                                 
 
 
