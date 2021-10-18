@@ -1,40 +1,49 @@
+from depth import dfs
+from breadth import bfs
+
 class TreeNode:
     def __init__(self, value):
         self.value = value 
         self.children = []
     
-    def add_child(self, word, prev_node=None):
-        letters_of_word = word
-
-        if len(word) == 0:
-            return
-    
-        while letters_of_word:
-            current_letter = letters_of_word[:1]
-            child_node = TreeNode(current_letter)
-            parent_childs = self.child_compressor(self.children)
-            if len(self.children) == 0:
-                self.children.append(child_node)
-                updated_word = word[1:]
-                prev_node = child_node
-                return child_node.add_child(updated_word, prev_node)
+    def add_child(self, word, prev_node=None): 
+        count = 0
+        for letter in word:
             
-            elif child_node.value in parent_childs:
-                for letter in self.children:
-                    if prev_node == None:
-                        prev_node = child_node
-                    if prev_node.value == letter.value:
-                        updated_word = word[1:]
-                        prev_node = letter
-                        return self.add_child(updated_word, prev_node)
+            if self.letter_checker(letter, self.children) == False:
+                tree_object = TreeNode(letter)
+                self.add_letter(tree_object)
+                self = tree_object
             else:
-                self.children.append(child_node)
-                updated_word = word[1:]
-                prev_node = child_node
-                return self.add_child(updated_word, prev_node)
+                for treenode in self.children:
+                    if treenode.value == letter:
+                        self = treenode
+                        
     
+    def add_letter(self, child_node):
+        self.children.append(child_node)
 
-            
+    def letter_checker(self, letter, list):
+        checker = False 
+        for obj in list:
+            if obj.value == letter:
+                checker = True
+    
+        return checker
+                    
+        
+    def input_prefix(self, word):
+        lists = []
+        nodes = [self]
+        while len(nodes) > 0:
+            current_node = nodes.pop()
+            if current_node.value == word[0]:
+                result = bfs(current_node, None)
+        
+            nodes += current_node.children
+        
+        return lists
+             
     def child_compressor(self, lst):
         values = []
         for node in lst:
@@ -83,7 +92,7 @@ class TreeNode:
             return True 
         else:
             return False
-            
+
     def remove_child(self, child_node):
         self.children = [i for i in self.children if not i == child_node]
 
@@ -94,12 +103,18 @@ class TreeNode:
             print(current_node.value)
             nodes += current_node.children 
 
-test = TreeNode(None)
+test = TreeNode("")
 
 test.add_child("west")
-test.add_child("cap")
-test.add_child("dap")
-print(test.traverse())
+test.add_child("waka")
+test.add_child("weep")
+test.add_child("branch")
+test.add_child('bam')
+test.traverse()
+
+
+
+
 
 
 # d p a c t s e w
