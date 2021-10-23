@@ -63,6 +63,8 @@ The commands inputted are sent to Streamlit's Stack as a process, and will run i
 
 # More information 📕
 
+Link to Library: https://pypi.org/project/triegig/
+
 Made in Python 3.9
 - `depth.py` = DFS algorithm
 - `tree.py` = Trie Data Structure
