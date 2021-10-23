@@ -11,7 +11,6 @@ The library can be downloaded by typing the command in the terminal: `pip instal
 
 ## Implementation 🛠
 
-## Implementation 
 Users can then import the trie to their workspace using: the command `from tree import initializer()`.
 
 This will import the Global Trie to your workspace.
