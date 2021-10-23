@@ -47,9 +47,10 @@ Users can type a prefix and the program will return all the words in the trie th
 
 Syntax: `initializer().input_prefix()` 
 
-The command will return a list of all the words in the trie that match the prefix inputted.
+The command will return a list of all the words in the trie that match the prefix inputted with the help of the DFS algorithm.
 
 # Extra Information 📚
 
 *Note*: Library works for all Python versions above 3.0
+Library Link: https://pypi.org/project/triegig/
 
